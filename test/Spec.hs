@@ -15,4 +15,6 @@ main = hspec $ do
         it "Should not find words that do not exist on the Grid" $ do
             findWord grid "YUVAL" `shouldBe` False
 
-    
+    describe "findWords" $ do
+        it "Should find all the words that exist on the grid" $ do
+            findWords grid languages `shouldBe` languages
