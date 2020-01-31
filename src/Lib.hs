@@ -8,6 +8,9 @@ module Lib
     , findWords
     , findWordInLine
     , skew
+    , genCoordsLine
+    , squareMatrixCoords
+    , og
     ) where
 
 -- Importing needed package.
@@ -64,11 +67,19 @@ findWord grid word =
 findWords :: Grid -> [String] -> [String]
 findWords grid words = filter (findWord grid) words
 
--- This should probably called isWordInLine
+-- This should probably be called isWordInLine
 -- 1. Word we are searching for.
 -- 2. The string we are searching in.
 -- 3. Boolean result.
 findWordInLine :: String -> String -> Bool
 findWordInLine = isInfixOf
 
+squareMatrixCoords:: (Num a, Enum a) => a -> a -> [[(a, a)]]
+squareMatrixCoords columns rows = map (genCoordsLine columns) [0 .. rows]
+
+genCoordsLine :: (Num a, Enum a) => a -> a -> [(a, a)]
+genCoordsLine columns row = zip (repeat row) [0 .. columns]
+
+og :: Show a => [a] -> IO()
+og = putStrLn . unlines . map show
 
